@@ -6,3 +6,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+naia-shared = { version = "0.4.1" }
+naia-derive = { version = "0.3.0" }
+cfg-if = "0.1.10"
+log = "0.4"
+nanoserde = "0.1.17"
