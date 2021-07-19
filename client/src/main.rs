@@ -62,7 +62,7 @@ fn main() {
 
     //window.add_cube(1.0, 1.0, 1.0);
 
-    let mut camera = ArcBall::new(Point3::new(0.0, 30.0, -50.0), Point3::origin());
+    let mut camera = ArcBall::new(Point3::new(0.0, 0.0, 50.0), Point3::origin());
 
     let mut actor_views = HashMap::new();
 
@@ -91,24 +91,12 @@ fn main() {
                                 info!("Creating view for actor {}", actor_key);
                                 ActorView::new(&mut window)
                             });
-                            let x = f32::from(*(point_actor.as_ref().borrow().x.get()));
-                            let y = f32::from(*(point_actor.as_ref().borrow().y.get()));
+                            let actor = point_actor.as_ref().borrow();
+                            let x = f32::from(*(actor.x.get()));
+                            let y = f32::from(*(actor.y.get()));
                             //debug!("Setting actor {} pos to {},{}", actor_key, x, y);
                             view.set_position(x, y, 0.0);
-                            view.set_color(point_actor.as_ref().borrow().color.get());
-                            /*
-                            let color = match point_actor.as_ref().borrow().color.get() {
-                                PointActorColor::Red => RED,
-                                PointActorColor::Blue => BLUE,
-                                PointActorColor::Yellow => YELLOW,
-                            };
-                            draw_rectangle(
-                                f32::from(*(point_actor.as_ref().borrow().x.get())),
-                                f32::from(*(point_actor.as_ref().borrow().y.get())),
-                                square_size,
-                                square_size,
-                                color,
-                            );*/
+                            view.set_color(actor.color.get());
                         }
                     }
                 }
