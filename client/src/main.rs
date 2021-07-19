@@ -60,7 +60,10 @@ fn main() {
     let mut window = Window::new("Kiss3d: wasm example");
     window.set_light(Light::StickToCamera);
 
-    //window.add_cube(1.0, 1.0, 1.0);
+    let mut origin = window.add_cube(1.0, 1.0, 1.0);
+    origin.set_surface_rendering_activation(false);
+    origin.set_lines_width(1.0);
+    origin.set_lines_color(Some(Point3::new(0.5, 0.5, 0.5)));
 
     let mut camera = ArcBall::new(Point3::new(0.0, 0.0, 50.0), Point3::origin());
 
