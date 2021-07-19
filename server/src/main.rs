@@ -1,10 +1,11 @@
 #[macro_use]
 extern crate log;
+extern crate simplelog;
 
-use std::{collections::HashMap, rc::Rc, time::Duration};
-
-use simple_logger;
+use log::LevelFilter;
+use simplelog::{ColorChoice, Config, TermLogger, TerminalMode};
 use smol::io;
+use std::{collections::HashMap, rc::Rc, time::Duration};
 
 use naia_server::{
     ActorKey, NaiaServer, Random, ServerAddresses, ServerConfig, ServerEvent, UserKey,
@@ -32,7 +33,13 @@ fn main() -> io::Result<()> {
     );
 
     smol::block_on(async {
-        simple_logger::init_with_level(log::Level::Info).expect("A logger was already initialized");
+        TermLogger::init(
+            LevelFilter::Debug,
+            Config::default(),
+            TerminalMode::Mixed,
+            ColorChoice::Auto,
+        )
+        .unwrap();
 
         info!("Naia Macroquad Server Example Started");
 
